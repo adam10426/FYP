@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'fyp_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dahdcr8m691oqp',
-        'USER': 'qglxzoqzvaqarm',
-        'PASSWORD': '0a85e4689cd3f46675711d22a80d1be2851e37b37a80f838c56138705743a9a2',
-        'HOST': 'c2-34-203-182-65.compute-1.amazonaws.com',
+        'NAME': 'vpuoqscj',
+        'USER': 'vpuoqscj',
+        'PASSWORD': 'wjA8Ixvlf2XdrVfljIWNcrajQ1yOhLQF',
+        'HOST': 'batyr.db.elephantsql.com',
         'PORT': '5432',
     }
 }
