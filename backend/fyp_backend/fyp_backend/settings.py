@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fyp_backend.wsgi.application'
 
+REST_FRAMEWORK = {
+#   'DEFAULT_PERMISSION_CLASSES': (
+#       'rest_framework.permissions.IsAuthenticated',
+#   ),
+#   'DEFAULT_AUTHENTICATION_CLASSES': (
+#       'rest_framework.authentication.SessionAuthentication',
+#       'rest_framework.authentication.BasicAuthentication',
+#     #   'rest_framework_simplejwt.authentication.JWTAuthentication'
+#   ),
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -84,7 +96,7 @@ DATABASES = {
     }
 }
 
-
+AUTH_USER_MODEL = "accounts.Users" 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
