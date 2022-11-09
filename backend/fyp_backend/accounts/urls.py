@@ -3,4 +3,7 @@ from .views import *
 
 app_name = 'accounts'
 
-urlpatterns = []
+urlpatterns = [
+    path('register',RegisterUser.as_view()),
+    path('login',Login.as_view())
+]
