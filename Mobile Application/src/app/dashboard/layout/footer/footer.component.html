@@ -1,0 +1,77 @@
+<ion-footer>
+  <div class="add-button-footer-flex">
+    <!-- <div> -->
+    <ion-chip
+      color="success"
+      [ngClass]="activeAddButton ? 'show-button' : 'hide-button'"
+      routerLink="/layout/add-room"
+      (click)="activateButton()"
+    >
+      add room
+    </ion-chip>
+    <!-- </div> -->
+    <ion-button
+      shape="round"
+      class="add-button"
+      color="light"
+      (click)="activateButton()"
+    >
+      <i
+        class="fa-solid fa-plus text-success"
+        [ngClass]="activeAddButton ? 'rotate-right' : 'rotate-left'"
+      ></i>
+    </ion-button>
+    <!-- <div class="add-rrom-devices"> -->
+    <ion-chip
+      color="success"
+      [ngClass]="activeAddButton ? 'show-button' : 'hide-button'"
+      routerLink="/layout/add-device"
+      (click)="activateButton()"
+    >
+      add devices
+    </ion-chip>
+    <!-- </div> -->
+  </div>
+
+  <ion-toolbar color="success" class="toolbar-border">
+    <div class="footer-flex-inner">
+      <div>
+        <ion-item color="inherit" lines="none" routerLink="/layout/dashboard">
+          <i class="fa-solid fa-house"></i>
+
+          <!-- <i class="bi bi-house"></i> -->
+        </ion-item>
+      </div>
+
+      <div>
+        <ion-item color="inherit" lines="none">
+          <i class="fa-solid fa-bell"></i>
+          <!-- <i class="bi bi-bell"></i> -->
+        </ion-item>
+      </div>
+      <!-- </div> -->
+
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+
+      <!-- <div class="footer-flex-inner"> -->
+      <div>
+        <ion-item color="inherit" lines="none" routerLink="/layout/room">
+          <i class="fa-solid fa-people-roof"></i>
+        </ion-item>
+      </div>
+
+      <div class="ms-n5">
+        <ion-item
+          color="inherit"
+          lines="none"
+          routerLink="/layout/edit-profile"
+        >
+          <i class="fa-solid fa-gear"></i>
+        </ion-item>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

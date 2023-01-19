@@ -1,0 +1,115 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-margin-vertical">
+        <ion-grid>
+          <!-- Page title -->
+          <ion-row>
+            <ion-col class="ion-margin-horizontal">
+              <ion-card class="login-card">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-text color="success">
+                      <h1 class="ion-text-start">Add Devices</h1>
+                    </ion-text></ion-card-title
+                  >
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <!-- Page title -->
+
+          <!-- edit information textbox -->
+          <ion-row>
+            <ion-col class="ion-margin-horizontal">
+              <ion-card class="login-card">
+                <ion-card-content>
+                  <!-- select sensor type -->
+                  <ion-item class="ion-no-border ion-round-5" shape="round">
+                    <ion-select
+                      interface="popover"
+                      placeholder="Select Device Type"
+                    >
+                      <ion-select-option value="waterLevelSensor"
+                        >Water Level Sensor</ion-select-option
+                      >
+                      <ion-select-option value="bulb">Bulb</ion-select-option>
+                      <ion-select-option value="waterMotor"
+                        >Water Moto Sensor</ion-select-option
+                      >
+                    </ion-select>
+                  </ion-item>
+                  <!-- select sensor type -->
+
+                  <!-- ngIf not water tank selected select room type -->
+                  <ion-item
+                    class="ion-no-border ion-margin-top-2 ion-round-5"
+                    shape="round"
+                  >
+                    <ion-select interface="popover" placeholder="Select Room">
+                      <ion-select-option
+                        *ngFor="let room of existingRooms"
+                        value="room"
+                      >
+                        {{room}}
+                      </ion-select-option>
+                      <!-- <ion-select-option value="bedroom1"
+                        >Bedroom 1</ion-select-option
+                      >
+                      <ion-select-option value="bedroom2"
+                        >Bedroom 2</ion-select-option
+                      >
+                      <ion-select-option value="livingRoom"
+                        >Living Room</ion-select-option
+                      > -->
+                    </ion-select>
+                  </ion-item>
+                  <!-- ngIf not water tank selected select room type -->
+
+                  <!-- encoded string -->
+                  <ion-item
+                    class="ion-margin-top-2 ion-no-border ion-round-5"
+                    shape="round"
+                  >
+                    <ion-input
+                      type="text"
+                      class="ion-round-5"
+                      placeholder="Enter Device UUID"
+                    ></ion-input>
+                  </ion-item>
+                  <!-- encoded string -->
+
+                  <!-- ngIf Water level sensor -->
+                  <ion-item class="ion-margin-top-2 ion-no-border ion-round-5">
+                    <ion-input
+                      type="text"
+                      placeholder="Enter Water Tank Depth in cm"
+                    ></ion-input>
+                  </ion-item>
+                  <!-- ngIf Water level sensor-->
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <!-- edit information textbox -->
+
+          <!-- save details button -->
+          <ion-row class="ion-margin-top ion-justify-content-center">
+            <ion-col
+              class="ion-margin-horizontal ion-justify-content-center ion-align-self-center"
+            >
+              <ion-card class="login-card">
+                <ion-card-content class="ion-text-center">
+                  <ion-button class="ion-login-button" color="success"
+                    >ADD DEVICE</ion-button
+                  >
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <!-- save details button -->
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

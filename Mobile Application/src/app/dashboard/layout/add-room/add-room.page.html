@@ -1,0 +1,68 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-margin-vertical">
+        <ion-grid>
+          <!-- Page title -->
+          <ion-row>
+            <ion-col class="ion-margin-horizontal">
+              <ion-card class="login-card">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-text color="success">
+                      <h1 class="ion-text-start">Add Room</h1>
+                    </ion-text></ion-card-title
+                  >
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <!-- Page title -->
+
+          <!-- room information textbox -->
+          <ion-row>
+            <ion-col class="ion-margin-horizontal">
+              <ion-card class="login-card">
+                <ion-card-content>
+                  <!-- encoded string -->
+                  <ion-item
+                    class="ion-margin-top-2 ion-no-border ion-round-5"
+                    shape="round"
+                  >
+                    <ion-input
+                      type="text"
+                      class="ion-round-5"
+                      placeholder="Enter Room Name"
+                      [(ngModel)]="roomName"
+                    ></ion-input>
+                  </ion-item>
+                  <!-- encoded string -->
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <!-- room information textbox -->
+
+          <!-- add room button -->
+          <ion-row class="ion-margin-top ion-justify-content-center">
+            <ion-col
+              class="ion-margin-horizontal ion-justify-content-center ion-align-self-center"
+            >
+              <ion-card class="login-card">
+                <ion-card-content class="ion-text-center">
+                  <ion-button
+                    class="ion-login-button"
+                    color="success"
+                    (click)="addRooms()"
+                    >ADD ROOM</ion-button
+                  >
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <!-- add room button -->
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

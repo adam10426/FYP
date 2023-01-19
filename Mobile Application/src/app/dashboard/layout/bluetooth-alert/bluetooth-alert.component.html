@@ -1,0 +1,29 @@
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+  "
+>
+  <ion-card class="alert-card">
+    <ion-card-header>
+      <ion-card-title> Bluetooth </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="outer-flex-container">
+        <ion-text>
+          {{ message }}
+        </ion-text>
+        <ion-button
+          color="success"
+          expand="block"
+          (click)="connectBluetoothDevice()"
+        >
+          Connect
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>
