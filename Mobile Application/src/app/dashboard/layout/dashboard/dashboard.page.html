@@ -1,0 +1,118 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <!-- Page title -->
+    <ion-row>
+      <ion-col class="ion-margin-horizontal">
+        <ion-card class="login-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-text color="success">
+                <h1 class="ion-text-start">Hello, Adam</h1>
+              </ion-text></ion-card-title
+            >
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <!-- Page title -->
+
+    <ion-row>
+      <ion-card class="water-level-card">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-chip class="water-level-chip">
+              <ion-label class="water-level-chip-label"
+                >Water Level Indication</ion-label
+              >
+              <ion-chip color="success" class="water-level-chip-label">
+                <ion-icon name="calendar" class="mr-1"></ion-icon>
+                <ion-label>13 JAN, 2023</ion-label>
+              </ion-chip>
+            </ion-chip>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text>{{waterLevelReadings}}</ion-text>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-margin-top">
+      <ion-chip color="success">
+        <ion-label>ROOMS</ion-label>
+      </ion-chip>
+    </ion-row>
+
+    <!-- rooms to be displayed -->
+    <div class="room-cards-display-column">
+      <div class="room-cards-display-row">
+        <ion-card class="room-card">
+          <ion-card-header>
+            <ion-chip>
+              <i class="fa-solid fa-couch"></i>
+            </ion-chip>
+          </ion-card-header>
+          <ion-card-content>No Device Found</ion-card-content>
+        </ion-card>
+
+        <ion-card class="room-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-chip>
+                <i class="fa-solid fa-bed"></i>
+              </ion-chip>
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <div class="device-info">
+              <div>
+                <ion-card-title> {{"Bedroom"}} </ion-card-title>
+                <ion-text>{{"1 device"}}</ion-text>
+              </div>
+
+              <div>
+                <ion-text>{{" 0 devices active"}}</ion-text>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div class="room-cards-display-row">
+        <ion-card class="room-card">
+          <ion-card-header>
+            <ion-chip class="icon-chip">
+              <i class="fa-solid fa-couch"></i>
+            </ion-chip>
+          </ion-card-header>
+          <ion-card-content>No Device Found</ion-card-content>
+        </ion-card>
+
+        <ion-card class="room-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-chip>
+                <i class="fa-solid fa-bed"></i>
+              </ion-chip>
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <div class="device-info">
+              <div>
+                <ion-card-title> {{"Bedroom"}} </ion-card-title>
+                <ion-text>{{"1 device"}}</ion-text>
+              </div>
+
+              <div>
+                <ion-text>{{" 0 devices active"}}</ion-text>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+    <!-- rooms to be displayed -->
+  </ion-grid>
+</ion-content>

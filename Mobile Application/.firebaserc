@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fyp-ionic-app": {
+      "hosting": {
+        "app": [
+          "fyp-ionic-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fyp-ionic-app"
+  }
+}
