@@ -29,13 +29,14 @@
                     <ion-select
                       interface="popover"
                       placeholder="Select Device Type"
+                      [(ngModel)]="addDevice.deviceType"
                     >
                       <ion-select-option value="waterLevelSensor"
                         >Water Level Sensor</ion-select-option
                       >
                       <ion-select-option value="bulb">Bulb</ion-select-option>
                       <ion-select-option value="waterMotor"
-                        >Water Moto Sensor</ion-select-option
+                        >Water Motor Sensor</ion-select-option
                       >
                     </ion-select>
                   </ion-item>
@@ -45,23 +46,19 @@
                   <ion-item
                     class="ion-no-border ion-margin-top-2 ion-round-5"
                     shape="round"
+                    *ngIf="addDevice.deviceType != 'waterLevelSensor'"
                   >
-                    <ion-select interface="popover" placeholder="Select Room">
+                    <ion-select
+                      interface="popover"
+                      placeholder="Select Room"
+                      [(ngModel)]="addDevice.room"
+                    >
                       <ion-select-option
                         *ngFor="let room of existingRooms"
-                        value="room"
+                        [value]="room.roomId"
                       >
-                        {{room}}
+                        {{room.roomName}}
                       </ion-select-option>
-                      <!-- <ion-select-option value="bedroom1"
-                        >Bedroom 1</ion-select-option
-                      >
-                      <ion-select-option value="bedroom2"
-                        >Bedroom 2</ion-select-option
-                      >
-                      <ion-select-option value="livingRoom"
-                        >Living Room</ion-select-option
-                      > -->
                     </ion-select>
                   </ion-item>
                   <!-- ngIf not water tank selected select room type -->
@@ -74,16 +71,34 @@
                     <ion-input
                       type="text"
                       class="ion-round-5"
-                      placeholder="Enter Device UUID"
+                      placeholder="Device Name"
+                      [(ngModel)]="addDevice.deviceName"
                     ></ion-input>
                   </ion-item>
                   <!-- encoded string -->
 
                   <!-- ngIf Water level sensor -->
-                  <ion-item class="ion-margin-top-2 ion-no-border ion-round-5">
+                  <ion-item
+                    class="ion-margin-top-2 ion-no-border ion-round-5"
+                    *ngIf="addDevice.deviceType === 'waterLevelSensor'"
+                  >
                     <ion-input
                       type="text"
                       placeholder="Enter Water Tank Depth in cm"
+                      [(ngModel)]="addDevice.tankDepth"
+                    ></ion-input>
+                  </ion-item>
+                  <!-- ngIf Water level sensor-->
+
+                  <!-- ngIf Water level sensor -->
+                  <ion-item
+                    class="ion-margin-top-2 ion-no-border ion-round-5"
+                    *ngIf="addDevice.deviceType != 'waterLevelSensor'"
+                  >
+                    <ion-input
+                      type="text"
+                      placeholder="Enter the Watts"
+                      [(ngModel)]="addDevice.watts"
                     ></ion-input>
                   </ion-item>
                   <!-- ngIf Water level sensor-->
@@ -100,7 +115,10 @@
             >
               <ion-card class="login-card">
                 <ion-card-content class="ion-text-center">
-                  <ion-button class="ion-login-button" color="success"
+                  <ion-button
+                    class="ion-login-button"
+                    color="success"
+                    (click)="addDevices()"
                     >ADD DEVICE</ion-button
                   >
                 </ion-card-content>

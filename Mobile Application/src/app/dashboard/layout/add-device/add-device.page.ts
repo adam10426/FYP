@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { RoomService } from 'src/app/services/rooms/room.service';
 import { untilDestroyed } from 'ngx-take-until-destroy/src';
+import { FormGroup, FormControl } from '@angular/forms';
+import { DeviceService } from 'src/app/services/devices/device.service';
 @Component({
   selector: 'app-add-device',
   templateUrl: './add-device.page.html',
@@ -8,30 +10,61 @@ import { untilDestroyed } from 'ngx-take-until-destroy/src';
 })
 export class AddDevicePage implements OnInit {
   existingRooms:any = undefined
+  
+  addDevice = {
+    deviceType:"waterLevelSensor",
+    room:'',
+    deviceName:"",
+    watts:"",
+    tankDepth:"",
+    deviceConsumption:0
+  }
+
   constructor(
-    private roomService : RoomService
+    private roomService : RoomService,
+    private deviceService : DeviceService
   ) { 
 
  
   }
 
  ngOnInit() {
- this.getAllRooms()    
+
+ this.listRooms()    
    
 
   }
   
-
-async getAllRooms(){
-  console.log("fired")
-  this.roomService.getAllRooms();
+listRooms(){
+  this.roomService.fetchRoomList()
   this.roomService.fetchRoomDetails().subscribe(room=>{
-  console.log("getAllrooms",room)
+  this.existingRooms = [...room]
+  this.addDevice.room = this.existingRooms[0].roomId
+    
  })    
 
-// this.existingRooms = response?.['rooms']
-    // console.log(this.existingRooms)
+
 }
 
+async addDevices(){
+  const deviceInformation:any = {}
+  deviceInformation[this.addDevice.deviceName] = this.addDevice
+  await this.deviceService.addDevice(this.addDevice.room,deviceInformation)
+  this.updateRoom()
+}
+
+async updateRoom(){
+  const data:any = await this.roomService.fetchAllRooms();
+  let rooms = Object.keys(data).map(room=>{
+      return data[room]
+  })
+  let selectedRoom = rooms.find((room:any)=>{return room.roomId === this.addDevice.room})
+  selectedRoom['totalDeviceRegsitered'] = selectedRoom['totalDeviceRegsitered'] + 1
+  let roomDetails:any = {}
+  roomDetails[selectedRoom.roomName] = selectedRoom
+  this.roomService.updateRooms(roomDetails)
+ 
+
+}
 
 }

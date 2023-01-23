@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RoomService } from 'src/app/services/rooms/room.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { LoadingController, ToastController } from '@ionic/angular';
+import * as uuid from "uuid"
 @Component({
   selector: 'app-add-room',
   templateUrl: './add-room.page.html',
@@ -28,35 +29,36 @@ export class AddRoomPage implements OnInit,OnDestroy {
   getAllRooms(){
      this.roomService.getAllRooms()
       this.roomService.fetchRoomDetails().pipe(untilDestroyed(this)).subscribe(room=>{
-     
       this.existingRooms  = room
      
     })
 
   }
 
-  async checkDuplicates(){
-    return  this.existingRooms.rooms.findIndex((room:any)=>room === this.roomName)
+  async checkDuplicates(rooms:any){
+    console.log(rooms,this.roomName)
+    // return  this.existingRooms.rooms.findIndex((room:any)=>room === this.roomName)
+    return rooms.find((room:any)=>{return room.roomName === this.roomName})
   }
 
-  async addRooms(){
-    const exsits = await this.checkDuplicates()
+  // async addRooms(){
+  //   const exsits = await this.checkDuplicates()
     
-    if(exsits<0){
-   this.existingRooms.rooms.push(this.roomName)
-   await this.roomService.addRoom(this.existingRooms)
-   this.roomName = undefined
-  this.showToast('Room Added Successfully')
+  //   if(exsits<0){
+  //  this.existingRooms.rooms.push(this.roomName)
+  //  await this.roomService.addRoom(this.existingRooms)
+  //  this.roomName = undefined
+  // this.showToast('Room Added Successfully')
 
-    }
-    else{
-     this.showToast('Room Already Exists')
-     this.roomName = undefined
+  //   }
+  //   else{
+  //    this.showToast('Room Already Exists')
+  //    this.roomName = undefined
       
-    }
+  //   }
 
 
-  }
+  // }
 
 
   async showToast(toastMessage:any){
@@ -67,5 +69,29 @@ export class AddRoomPage implements OnInit,OnDestroy {
     await toast.present()
   }
 
+  async test(){
+    let response = await this.roomService.fetchAllRooms();
+
+    let data = Object.keys(response).map((room:any)=>{
+      return response[room]
+    })
+    
+    const exsist = await this.checkDuplicates(data)
+    if(exsist){
+      console.log("room already exists")
+    }
+    else{
+      
+      let roomDetails:any = {}
+        roomDetails[this.roomName] = {
+        roomName : this.roomName,
+        totalDeviceRegsitered : 0,
+        totalEnergyConsumed : 0,
+        roomId : uuid.v4()
+      }
+      await this.roomService.addRoom(roomDetails)
+    
+    }
+  }
   
 }

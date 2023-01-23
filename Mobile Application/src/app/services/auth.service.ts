@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { Firestore,doc, setDoc } from '@angular/fire/firestore';
-import { OverlayBaseController } from '@ionic/angular/util/overlay';
+import { Firestore,doc, setDoc,collection, query, where, getDocs, documentId, updateDoc } from '@angular/fire/firestore';
 import { Observable,Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -75,6 +74,26 @@ export class AuthService {
   
   getAdditionalInformation(){
     return this.userAdditionalDetails
+  }
+
+  async getUserDetails(){
+    this.user = this.getCurrentUser()
+    const q = query(collection(this.firestore,'users'),where(documentId(),"==",this.user.uid))
+    const response = await getDocs(q)
+    let data:any = undefined ;
+    response.forEach(doc=>{
+      data = doc.data()
+    })
+
+    return data.information
+
+  }
+
+  async updateUser(userInformation:any){
+    this.user = this.getCurrentUser()
+    const docRef = doc(this.firestore,`users/${this.user.uid}`)
+    await updateDoc(docRef,userInformation)
+    return true
   }
 
 }

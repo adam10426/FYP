@@ -1,15 +1,19 @@
 <ion-content [fullscreen]="true">
-  <ion-card class="room-card" *ngFor="let room of rooms">
+  <ion-card
+    class="room-card"
+    *ngFor="let room of rooms"
+    (click)="redirect(room.roomId)"
+  >
     <ion-card-header>
       <div class="card-header-footer">
         <ion-text><h2>{{room.roomName}}</h2></ion-text>
         <ion-text class="mt-n2">
-          {{room.devicesConnected}} devices registered
+          {{room.totalDeviceRegsitered}} devices registered
         </ion-text>
       </div>
     </ion-card-header>
     <ion-card-content>
-      {{room.energyConsumption}} watts consumed
+      {{room.totalEnergyConsumed}} watts consumed
     </ion-card-content>
   </ion-card>
 </ion-content>

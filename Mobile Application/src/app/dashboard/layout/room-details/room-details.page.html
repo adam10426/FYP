@@ -1,21 +1,27 @@
 <ion-content [fullscreen]="true">
-  <ion-card class="device-detail-card">
+  <ion-card class="device-detail-card" *ngFor="let device of devices">
     <ion-card-header>
       <ion-card-title class="title-flex">
         <div class="title-text-flex">
-          <ion-text> {{"Light Bulb 1"}} </ion-text>
+          <ion-text> {{device.deviceName}} </ion-text>
 
-          <ion-text> {{"Energy consumption"}} </ion-text>
+          <ion-text> {{device.deviceConsumption}} </ion-text>
         </div>
 
         <div class="icon-alignment">
           <!-- <ion-item class="icon-alignment"> -->
           <!-- <div> -->
-          <i class="fa-solid fa-plug-circle-bolt ion-text-start"></i>
+          <i
+            class="fa-solid fa-plug-circle-bolt ion-text-start"
+            (click)="switchOnDevice(device)"
+          ></i>
           <!-- </div> -->
           <!-- <div></div> -->
           <!-- <div> -->
-          <i class="fa-solid fa-plug-circle-xmark ion-text-end"></i>
+          <i
+            class="fa-solid fa-plug-circle-xmark ion-text-end"
+            (click)="switchOffDevice(device)"
+          ></i>
           <!-- </div> -->
           <!-- </ion-item> -->
         </div>

@@ -22,26 +22,49 @@
             <ion-col class="ion-margin-horizontal">
               <ion-card class="login-card">
                 <ion-card-content>
+                  <!-- <form> -->
                   <!-- fullName -->
                   <ion-item class="ion-no-border ion-round-5" shape="round">
-                    <ion-input type="text" class="ion-round-5"></ion-input>
+                    <ion-input
+                      type="text"
+                      class="ion-round-5"
+                      [(ngModel)]="this.updatedUserDetails.firstName"
+                    ></ion-input>
                   </ion-item>
                   <!-- fullName -->
                   <!-- Address -->
                   <ion-item class="ion-margin-top-2 ion-no-border ion-round-5">
-                    <ion-input type="text"></ion-input>
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="this.updatedUserDetails.lastName"
+                    ></ion-input>
                   </ion-item>
                   <!-- Address -->
                   <!-- Contact -->
                   <ion-item class="ion-margin-top-2 ion-no-border ion-round-5">
-                    <ion-input type="text"></ion-input>
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="this.updatedUserDetails.address"
+                    ></ion-input>
                   </ion-item>
                   <!-- Contact -->
                   <!-- Supplier's Contact -->
                   <ion-item class="ion-margin-top-2 ion-no-border ion-round-5">
-                    <ion-input type="text"></ion-input>
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="this.updatedUserDetails.contact"
+                    ></ion-input>
                   </ion-item>
                   <!-- Supplier's Contact -->
+                  <!-- Supplier's Contact -->
+                  <ion-item class="ion-margin-top-2 ion-no-border ion-round-5">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="this.updatedUserDetails.supplierContact"
+                    ></ion-input>
+                  </ion-item>
+                  <!-- Supplier's Contact -->
+                  <!-- </form> -->
                 </ion-card-content>
               </ion-card>
             </ion-col>
@@ -55,7 +78,10 @@
             >
               <ion-card class="login-card">
                 <ion-card-content class="ion-text-center">
-                  <ion-button class="ion-login-button" color="success"
+                  <ion-button
+                    class="ion-login-button"
+                    color="success"
+                    (click)="updateUserInformation()"
                     >Save</ion-button
                   >
                 </ion-card-content>

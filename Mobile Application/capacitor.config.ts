@@ -2,9 +2,10 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'fyp',
+  appName: 'Demonatics',
   webDir: 'www',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  
 };
 
 export default config;

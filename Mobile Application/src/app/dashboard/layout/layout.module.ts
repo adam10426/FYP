@@ -12,6 +12,7 @@ import { LayoutPage } from './layout.page';
 
 @NgModule({
   imports: [
+   
     CommonModule,
     FormsModule,
     IonicModule,

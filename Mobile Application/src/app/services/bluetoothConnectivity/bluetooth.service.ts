@@ -9,7 +9,6 @@ import { Observable, Subject } from 'rxjs';
 export class BluetoothService {
 
   bluetoothEnabled = new Subject<any>()
-  // pairedDevices = new Subject<any>()
   pairedDevices:any= []
   isDeviceConnected = new Subject<any>()
   sensorReadings = new Subject<any>()
@@ -23,7 +22,9 @@ export class BluetoothService {
 
 
   checkBluetoothConnectivity(){
-    this.bluetoothSerial.isEnabled().then(success=>{},failure=>{
+    this.bluetoothSerial.isEnabled().then(success=>{
+      this.bluetoothEnabled.next(true)
+    },failure=>{
       this.bluetoothSerial.enable().then(success=>{
         this.bluetoothEnabled.next(true)
       })
@@ -80,6 +81,18 @@ export class BluetoothService {
 
   fetchSensorReadings():Observable<any>{
       return this.sensorReadings.asObservable()
+    }
+
+    async switchSensor(option:any){
+      if(this.bluetoothEnabled){
+      await this.bluetoothSerial.write(option)
+      this.showToast("write operation completed")
+      return true
+      }
+      else{
+        this.showToast("Bluetooth device not connected")
+        return false
+      }
     }
 
     async showToast(toastMessage:any){

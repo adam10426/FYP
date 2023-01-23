@@ -42,6 +42,11 @@ export class FooterComponent implements OnInit {
   activateButton(){
     this.activeAddButton = !this.activeAddButton;
   }
+
+  redirect(redirectPath:any){
+    
+    this.navCtrl.navigateForward([`/layout/${redirectPath}`])
+  }
     // redirectToEditProfile(){
     //   console.log('routing')
     //   this.navCtrl.navigateForward(['/layout/edit-profile'])

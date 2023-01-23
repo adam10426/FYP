@@ -25,8 +25,7 @@
     <ion-chip
       color="success"
       [ngClass]="activeAddButton ? 'show-button' : 'hide-button'"
-      routerLink="/layout/add-device"
-      (click)="activateButton()"
+      (click)="activateButton(); redirect('add-device')"
     >
       add devices
     </ion-chip>

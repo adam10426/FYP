@@ -3,6 +3,7 @@
 
 
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -31,7 +32,7 @@
 
   /** success **/
   // --ion-color-success: #2dd36f;
-  --ion-color-success:#55BB6C;
+  --ion-color-success:#2fdf75;
   --ion-color-success-rgb: 45, 211, 111;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255, 255, 255;
@@ -237,3 +238,36 @@
     --ion-card-background: #1e1e1e;
   }
 }
+
+@font-face {
+  font-family: "Poppins Regular";
+  src: url('../assets/fonts/Poppins-Regular.ttf') format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Poppins semibold";
+  src: url('../assets//fonts/Poppins-SemiBold.ttf') format("truetype");
+  font-display: swap;
+  font-style: semi-bold;
+  font-weight: 600;
+}
+
+$font-family-base:'Poppins semibold';
+
+ion-card,ion-text,ion-button,ion-app,ion-chip{
+font-family:'Poppins Regular';
+
+}
+
+ion-button{
+  width:75% !important;
+    height:50px !important;
+    --border-radius:15px !important;    
+    font-size: 18px;
+}
+
+
+// $font-family-base: 'Poppins', sans-serif;
