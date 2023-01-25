@@ -31,12 +31,7 @@ export class RoomService {
  getAllRooms(){
 
   this.user = this.authService.getCurrentUser();
-  // this.authService.getCurrentUserOb().subscribe(async(user)=>{
-  // const roomDocRef = doc(this.fireStore,'rooms',user.uid) 
-  // console.log("rooms 39 rooms Service")
-  // const response = await getDoc(roomDocRef)
-  // this.rooms.next(response.data())
-  // })
+  
   
  }
 

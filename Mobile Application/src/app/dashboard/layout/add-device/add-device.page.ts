@@ -1,7 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { RoomService } from 'src/app/services/rooms/room.service';
-import { untilDestroyed } from 'ngx-take-until-destroy/src';
-import { FormGroup, FormControl } from '@angular/forms';
 import { DeviceService } from 'src/app/services/devices/device.service';
 @Component({
   selector: 'app-add-device',
@@ -48,9 +46,16 @@ listRooms(){
 
 async addDevices(){
   const deviceInformation:any = {}
+  if(this.addDevice.deviceType != 'waterLevelSensor'){
   deviceInformation[this.addDevice.deviceName] = this.addDevice
   await this.deviceService.addDevice(this.addDevice.room,deviceInformation)
   this.updateRoom()
+}
+else{
+  deviceInformation[this.addDevice.deviceName] = this.addDevice
+  await this.deviceService.addDevice('waterTank',deviceInformation)
+}
+
 }
 
 async updateRoom(){
@@ -66,5 +71,6 @@ async updateRoom(){
  
 
 }
+
 
 }

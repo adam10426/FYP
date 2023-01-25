@@ -36,29 +36,10 @@ export class AddRoomPage implements OnInit,OnDestroy {
   }
 
   async checkDuplicates(rooms:any){
-    console.log(rooms,this.roomName)
-    // return  this.existingRooms.rooms.findIndex((room:any)=>room === this.roomName)
     return rooms.find((room:any)=>{return room.roomName === this.roomName})
   }
 
-  // async addRooms(){
-  //   const exsits = await this.checkDuplicates()
-    
-  //   if(exsits<0){
-  //  this.existingRooms.rooms.push(this.roomName)
-  //  await this.roomService.addRoom(this.existingRooms)
-  //  this.roomName = undefined
-  // this.showToast('Room Added Successfully')
 
-  //   }
-  //   else{
-  //    this.showToast('Room Already Exists')
-  //    this.roomName = undefined
-      
-  //   }
-
-
-  // }
 
 
   async showToast(toastMessage:any){

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,13 +18,13 @@ export class SignupPage implements OnInit {
     conformPassword : new FormControl('')
   })
 
-  // conformPassword = ''
+ 
 
   constructor(
-    // private router: Router,
+    
     private navCtrl:NavController,
     private authService:AuthService,
-    // private loadingController: LoadingController,
+    
     ) { }
 
   ngOnInit() {
