@@ -24,16 +24,62 @@
               <ion-label class="water-level-chip-label"
                 >Water Level Indication</ion-label
               >
-              <ion-chip color="success" class="water-level-chip-label">
-                <ion-icon name="calendar" class="mr-1"></ion-icon>
-                <ion-label>13 JAN, 2023</ion-label>
-              </ion-chip>
+              <!-- <ion-chip color="success" class="water-level-chip-label"> -->
+              <!-- <ion-icon name="calendar" class="mr-1"></ion-icon> -->
+              <!-- <i class="fa-regular fa-clock"></i> -->
+              <ion-label
+                color="success"
+                class="water-level-chip-label"
+                style="margin-left: 2px"
+                >{{time |date:'hh:mm:ss a'}}</ion-label
+              >
+              <!-- </ion-chip> -->
             </ion-chip>
           </ion-card-title>
         </ion-card-header>
-        <ion-card-content>
-          <!-- <ng-lottie [options]="options"></ng-lottie> -->
-          <ion-text>{{waterLevelReadings}}</ion-text>
+        <ion-card-content
+          class="text-center"
+          style="margin-top: 67px; margin-bottom: 30px"
+        >
+          <div class="d-flex flex-column">
+            <ion-text style="margin-top: 10px">
+              <div class="d-flex flex-row justify-content-center">
+                <div
+                  style="
+                    width: 200px;
+                    z-index: -1;
+                    position: absolute;
+                    top: -94px;
+                  "
+                >
+                  <ng-lottie [options]="options"></ng-lottie>
+                </div>
+                <h1
+                  class="text-white text-center"
+                  style="margin-top: -15px; font-size: 20px; font-weight: 600"
+                >
+                  {{waterLevelPercentage}} %
+                </h1>
+              </div>
+            </ion-text>
+
+            <div
+              class="d-flex flex-row justify-content-between mb-3"
+              style="font-size: 20px"
+            >
+              <i
+                class="fa-solid fa-arrow-up-from-water-pump align-self-center"
+                [class.switch-motor]="motorAutomationStatus === true"
+                (click)="updateMotorAutomationStatus()"
+              ></i>
+
+              <i
+                class="fa-solid fa-power-off"
+                [class.switch-motor]="motorStatus === true"
+                (click)="switchMotor()"
+              ></i>
+            </div>
+          </div>
         </ion-card-content>
       </ion-card>
     </ion-row>

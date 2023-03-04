@@ -7,11 +7,17 @@ import { GeneralModule } from '../../sharedComponent.module';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web'
 
-
+export function playerFactory(){
+  return player
+}
 @NgModule({
   imports: [
-    
+    LottieModule.forRoot({player:playerFactory}),
+    // BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     IonicModule,

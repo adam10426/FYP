@@ -46,7 +46,7 @@
                   <ion-item
                     class="ion-no-border ion-margin-top-2 ion-round-5"
                     shape="round"
-                    *ngIf="addDevice.deviceType != 'waterLevelSensor'"
+                    *ngIf="addDevice.deviceType === 'bulb'"
                   >
                     <ion-select
                       interface="popover"
@@ -102,6 +102,28 @@
                     ></ion-input>
                   </ion-item>
                   <!-- ngIf Water level sensor-->
+
+                  <ion-item
+                    class="ion-margin-top-2 ion-no-border ion-round-5"
+                    *ngIf="addDevice.deviceType != 'waterLevelSensor'"
+                  >
+                    <ion-input
+                      type="text"
+                      placeholder="Enter the Pin Number"
+                      [(ngModel)]="addDevice.pin"
+                    ></ion-input>
+                  </ion-item>
+
+                  <ion-item
+                    class="ion-margin-top-2 ion-no-border ion-round-5"
+                    *ngIf="addDevice.deviceType == 'waterMotor'"
+                  >
+                    <ion-text> Automation </ion-text>
+                    <ion-toggle
+                      color="success"
+                      [(ngModel)]="addDevice.automationStatus"
+                    ></ion-toggle>
+                  </ion-item>
                 </ion-card-content>
               </ion-card>
             </ion-col>

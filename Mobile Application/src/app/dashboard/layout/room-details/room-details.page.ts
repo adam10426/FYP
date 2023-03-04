@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomService } from 'src/app/services/rooms/room.service';
 import { DeviceService } from 'src/app/services/devices/device.service';
 import { BluetoothService } from 'src/app/services/bluetoothConnectivity/bluetooth.service';
+import { NotificationService } from 'src/app/services/notifications/notification.service';
 @Component({
   selector: 'app-room-details',
   templateUrl: './room-details.page.html',
@@ -16,7 +17,8 @@ export class RoomDetailsPage implements OnInit {
     private activatedRoute : ActivatedRoute,
     private deviceService : DeviceService,
     private roomService : RoomService,
-    private bluetoothService : BluetoothService
+    private bluetoothService : BluetoothService,
+    private notificationService : NotificationService
   ) { 
 
   }
@@ -27,7 +29,7 @@ export class RoomDetailsPage implements OnInit {
       this.roomId = params.id
   });
   
-    // console.log(this.roomId)
+  
     this.deviceService.fetchDevices(this.roomId)
     this.deviceService.fetchDeviceObservable().subscribe(devices=>{
       this.devices = devices
@@ -39,10 +41,9 @@ export class RoomDetailsPage implements OnInit {
   async switchOnDevice(deviceInformation:any){
     const timeStamp = new Date()
     deviceInformation['timeStamp'] =  timeStamp.getTime()
+    deviceInformation['status'] = true
     const device:any = {}
     device[deviceInformation.deviceName]=deviceInformation
-    let response = await this.bluetoothService.switchSensor('1')
-    if(response)
     this.deviceService.updateDevice(this.roomId,device)
 
     
@@ -54,17 +55,33 @@ export class RoomDetailsPage implements OnInit {
     let upTime = switchOffTime + deviceInformation.timeStamp 
     upTime = this.convertToHours(upTime)
     const energyConsumption = this.calculatedConsumption(deviceInformation.watts,upTime)
-    console.log(upTime , energyConsumption )
+    // console.log(upTime , energyConsumption )
     deviceInformation['timeStamp'] =  switchOffTime
+    deviceInformation['status'] = false
     deviceInformation.deviceConsumption =  deviceInformation.deviceConsumption + energyConsumption
     const device:any = {}
     device[deviceInformation.deviceName]=deviceInformation
-    let response = await this.bluetoothService.switchSensor('0')
-    if(response){
+    // let response = await this.bluetoothService.switchSensor('a')
+    // if(response){
     await this.deviceService.updateDevice(this.roomId,device)
     this.updateRoom(energyConsumption)
-    }
+    // }
     
+  }
+
+  async test(device:any,$event:any){
+    
+    await this.bluetoothService.switchSensor(parseInt(device.pin),$event.detail.checked)
+    if($event.detail.checked){
+      this.switchOnDevice(device)
+      this.notificationService.addNotification(`${device.deviceName} has been switched On`,`${device.deviceName}`)
+      
+    }
+    else{
+      this.switchOffDevice(device)
+      this.notificationService.addNotification(`${device.deviceName} has been switched off`,`${device.deviceName}`)
+    }
+  
   }
 
 
@@ -75,9 +92,6 @@ export class RoomDetailsPage implements OnInit {
     calculatedConsumption(power:any,upTime:any){
       return parseInt(power)*(upTime/1000)
     }
-
-
-
     
     async updateRoom(energyConsumption:any){
       const data:any = await this.roomService.fetchAllRooms();

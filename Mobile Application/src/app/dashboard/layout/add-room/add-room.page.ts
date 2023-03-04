@@ -19,11 +19,11 @@ export class AddRoomPage implements OnInit,OnDestroy {
   ) { }
 
   ngOnInit() {
-    // this.roomService.getAllRooms();
+    
   this.getAllRooms()
   }
   ngOnDestroy(): void {
-    // this.roomService.fetchRoomDetails()
+   
   }
 
   getAllRooms(){
@@ -51,13 +51,16 @@ export class AddRoomPage implements OnInit,OnDestroy {
   }
 
   async test(){
+    let exsist = false;
     let response = await this.roomService.fetchAllRooms();
-
+    
+    if(response){
     let data = Object.keys(response).map((room:any)=>{
       return response[room]
     })
     
-    const exsist = await this.checkDuplicates(data)
+    exsist = await this.checkDuplicates(data)
+  }
     if(exsist){
       console.log("room already exists")
     }
@@ -70,6 +73,7 @@ export class AddRoomPage implements OnInit,OnDestroy {
         totalEnergyConsumed : 0,
         roomId : uuid.v4()
       }
+    
       await this.roomService.addRoom(roomDetails)
     
     }

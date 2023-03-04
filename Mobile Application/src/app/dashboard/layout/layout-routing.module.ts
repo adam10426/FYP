@@ -33,9 +33,13 @@ const routes: Routes = [
     path: 'room-details',
     loadChildren: () => import('./room-details/room-details.module').then( m => m.RoomDetailsPageModule)
   },
-  
+  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
 ]
 },
+  
  
   
 ];

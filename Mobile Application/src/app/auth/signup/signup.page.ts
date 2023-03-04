@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController} from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -44,5 +44,7 @@ export class SignupPage implements OnInit {
   redirectToLogin(){
     this.navCtrl.navigateForward(['/login'])
   }
+
+
 
 }

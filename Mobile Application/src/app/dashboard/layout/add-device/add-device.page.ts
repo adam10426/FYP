@@ -15,7 +15,11 @@ export class AddDevicePage implements OnInit {
     deviceName:"",
     watts:"",
     tankDepth:"",
-    deviceConsumption:0
+    pin:'',
+    userUUID:'',
+    deviceConsumption:0,
+    automationStatus:false,
+    status:false
   }
 
   constructor(
@@ -38,6 +42,7 @@ listRooms(){
   this.roomService.fetchRoomDetails().subscribe(room=>{
   this.existingRooms = [...room]
   this.addDevice.room = this.existingRooms[0].roomId
+
     
  })    
 
@@ -46,14 +51,27 @@ listRooms(){
 
 async addDevices(){
   const deviceInformation:any = {}
-  if(this.addDevice.deviceType != 'waterLevelSensor'){
+  if(this.addDevice.deviceType != 'waterLevelSensor' && this.addDevice.deviceType != 'waterMotor'){
   deviceInformation[this.addDevice.deviceName] = this.addDevice
-  await this.deviceService.addDevice(this.addDevice.room,deviceInformation)
+
+  const response  = await this.deviceService.checkDuplicates(this.addDevice.deviceName,this.addDevice.pin)
+  if(response === true){
+  await this.deviceService.addDevice(this.addDevice.room,deviceInformation,this.addDevice.deviceName)
+  this.clearDeviceInput()
   this.updateRoom()
+  }
+
+
+}
+else if(this.addDevice.deviceType != "waterLevelSensor" && this.addDevice.deviceType === "waterMotor" ){
+  deviceInformation[this.addDevice.deviceName] = this.addDevice
+  await this.deviceService.addDevice('waterMotor',deviceInformation,this.addDevice.deviceName)
+  this.clearDeviceInput()
 }
 else{
   deviceInformation[this.addDevice.deviceName] = this.addDevice
-  await this.deviceService.addDevice('waterTank',deviceInformation)
+  await this.deviceService.addDevice('waterTank',deviceInformation,this.addDevice.deviceName)
+  this.clearDeviceInput()
 }
 
 }
@@ -68,9 +86,27 @@ async updateRoom(){
   let roomDetails:any = {}
   roomDetails[selectedRoom.roomName] = selectedRoom
   this.roomService.updateRooms(roomDetails)
- 
+  
 
 }
 
+
+clearDeviceInput(){
+  this.addDevice.deviceName = ''
+  this.addDevice.watts = ''
+  this.addDevice.pin = ''
+  this.addDevice.tankDepth=''
+  this.addDevice.automationStatus = false
+}
+
+
+checkDuplicates(){
+  
+}
+
+getRoomName(){
+  const roomDetails = this.existingRooms.find((x:any)=>x.roomId === this.addDevice.room)
+  return roomDetails?.roomName
+}
 
 }

@@ -45,8 +45,9 @@ export class BluetoothService {
     pairedDevices.map((device:any)=>{
       if(device.name === 'MASTER')
       {
-      this.bluetoothSerial.connect(device.address).subscribe(sucess=>{
-        this.readSensorData();
+      this.bluetoothSerial.connect(device.address).subscribe(success=>{
+        this.readSensorData()
+        // this.isDeviceConnected.next(true)
         this.showToast("device has been connected")
         
         
@@ -64,7 +65,7 @@ export class BluetoothService {
     }
 
   readSensorData(){
-    this.showToast("Reading sesnor data")  
+    // this.showToast("Reading sesnor data")  
     this.bluetoothSerial.subscribeRawData().subscribe(success=>{      
         this.readReadings()
         
@@ -83,18 +84,50 @@ export class BluetoothService {
       return this.sensorReadings.asObservable()
     }
 
-    async switchSensor(option:any){
-      if(this.bluetoothEnabled){
-      await this.bluetoothSerial.write(option)
-      this.showToast("write operation completed")
-      return true
-      }
-      else{
-        this.showToast("Bluetooth device not connected")
-        return false
-      }
-    }
+    async switchSensor(pin:any,status:any){
+      // console.log(pin,status)
+      if(pin === 6 && status === true )
+        await this.bluetoothSerial.write('A')
+      else if(pin === 6 && status === false )
+      await this.bluetoothSerial.write('a')
 
+      if(pin === 7 && status )
+      await this.bluetoothSerial.write('B')
+      else if(pin === 7 && !status )
+      await this.bluetoothSerial.write('b')
+
+      if(pin === 8 && status )
+      await this.bluetoothSerial.write('C')
+      else if(pin === 8 && !status )
+      await this.bluetoothSerial.write('c')
+
+      if(pin === 9 && status )
+      await this.bluetoothSerial.write('D')
+      else if(pin === 9 && !status )
+      await this.bluetoothSerial.write('d')
+
+      if(pin === 10 && status )
+      await this.bluetoothSerial.write('E')
+      else if(pin === 10 && !status )
+      await this.bluetoothSerial.write('e')
+    
+      if(pin === 11 && status )
+      await this.bluetoothSerial.write('F')
+      else if(pin === 11 && !status )
+      await this.bluetoothSerial.write('f')
+
+      // if(this.bluetoothEnabled){
+        
+      // await this.bluetoothSerial.write(option)
+      // this.showToast("write operation completed")
+      // return true
+      // }
+      // else{
+      //   this.showToast("Bluetooth device not connected")
+      //   return false
+      // }
+    }
+ 
     async showToast(toastMessage:any){
       const toast = await this.toastCtrl.create({
         message: toastMessage,

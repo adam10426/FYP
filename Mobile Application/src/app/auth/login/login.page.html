@@ -1,86 +1,90 @@
-<ion-grid>
-  <ion-row>
-    <ion-col class="ion-margin-vertical">
-      <ion-grid>
-        <ion-row class="ion-margin-top-4">
-          <ion-col class="ion-margin-horizontal">
-            <ion-card class="login-card">
-              <ion-card-header>
-                <ion-card-title> </ion-card-title>
-              </ion-card-header>
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-margin-vertical">
+        <ion-grid>
+          <ion-row class="ion-margin-top-4">
+            <ion-col class="ion-margin-horizontal">
+              <ion-card class="login-card">
+                <ion-card-header>
+                  <ion-card-title> </ion-card-title>
+                </ion-card-header>
 
-              <ion-card-content class="ion-margin-top">
-                <ion-text color="success">
-                  <h1 class="ion-text-center">Login</h1>
-                </ion-text>
-                <ion-text>
-                  <p
-                    class="ion-text-center ion-text-wrap ion-margin-top-1 ion-margin-left-1 text-small"
-                  >
-                    Please login to continue using our application
-                  </p>
-                </ion-text>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="ion-margin-top-4">
-          <ion-col class="ion-margin-horizontal">
-            <ion-card class="login-card">
-              <ion-card-content>
-                <form [formGroup]="loginForm">
-                  <ion-item class="ion-no-border ion-round-5">
-                    <ion-input
-                      type="email"
-                      placeholder="User"
-                      class="ion-round-5"
-                      formControlName="user"
-                    ></ion-input>
-                  </ion-item>
-                  <ion-item class="ion-margin-top-2 ion-no-border ion-round-5">
-                    <ion-input
-                      type="password"
-                      placeholder="Password"
-                      formControlName="password"
-                    ></ion-input>
-                  </ion-item>
-                </form>
-                <p class="ion-margin-top-3 ion-text-center">
-                  Forgot Password?
-
-                  <ion-text color="success">Click here</ion-text>
-                </p>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="ion-margin-top ion-justify-content-center">
-          <ion-col
-            class="ion-margin-horizontal ion-justify-content-center ion-align-self-center"
-          >
-            <ion-card class="login-card">
-              <ion-card-content class="ion-text-center">
-                <ion-button
-                  class="ion-login-button"
-                  color="success"
-                  (click)="login()"
-                  >Login</ion-button
-                >
-                <div class="ion-margin-top-2 ion-text-center">
-                  <ion-text class="ion-margin-top-2 ion-text-center">
-                    You a new user?
-                    <ion-text color="success" (click)="redirectToSignUp()"
-                      >Create Account</ion-text
-                    >
+                <ion-card-content class="ion-margin-top">
+                  <ion-text color="success">
+                    <h1 class="ion-text-center">Login</h1>
                   </ion-text>
-                </div>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+                  <ion-text>
+                    <p
+                      class="ion-text-center ion-text-wrap ion-margin-top-1 ion-margin-left-1 text-small"
+                    >
+                      Please login to continue using our application
+                    </p>
+                  </ion-text>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-margin-top-4">
+            <ion-col class="ion-margin-horizontal">
+              <ion-card class="login-card">
+                <ion-card-content>
+                  <form [formGroup]="loginForm">
+                    <ion-item class="ion-no-border ion-round-5">
+                      <ion-input
+                        type="email"
+                        placeholder="User"
+                        class="ion-round-5"
+                        formControlName="user"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-item
+                      class="ion-margin-top-2 ion-no-border ion-round-5"
+                    >
+                      <ion-input
+                        type="password"
+                        placeholder="Password"
+                        formControlName="password"
+                      ></ion-input>
+                    </ion-item>
+                  </form>
+                  <p class="ion-margin-top-3 ion-text-center">
+                    Forgot Password?
+
+                    <ion-text color="success">Click here</ion-text>
+                  </p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-margin-top ion-justify-content-center">
+            <ion-col
+              class="ion-margin-horizontal ion-justify-content-center ion-align-self-center"
+            >
+              <ion-card class="login-card">
+                <ion-card-content class="ion-text-center">
+                  <ion-button
+                    class="ion-login-button"
+                    color="success"
+                    (click)="login()"
+                    >Login</ion-button
+                  >
+                  <div class="ion-margin-top-2 ion-text-center">
+                    <ion-text class="ion-margin-top-2 ion-text-center">
+                      You a new user?
+                      <ion-text color="success" (click)="redirectToSignUp()"
+                        >Create Account</ion-text
+                      >
+                    </ion-text>
+                  </div>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

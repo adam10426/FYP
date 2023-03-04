@@ -9,21 +9,12 @@
         </div>
 
         <div class="icon-alignment">
-          <!-- <ion-item class="icon-alignment"> -->
-          <!-- <div> -->
-          <i
-            class="fa-solid fa-plug-circle-bolt ion-text-start"
-            (click)="switchOnDevice(device)"
-          ></i>
-          <!-- </div> -->
-          <!-- <div></div> -->
-          <!-- <div> -->
-          <i
-            class="fa-solid fa-plug-circle-xmark ion-text-end"
-            (click)="switchOffDevice(device)"
-          ></i>
-          <!-- </div> -->
-          <!-- </ion-item> -->
+          <ion-toggle
+            color="success"
+            [enableOnOffLabels]="true"
+            (ionChange)="test(device,$event)"
+            [checked]="device.status"
+          ></ion-toggle>
         </div>
       </ion-card-title>
     </ion-card-header>

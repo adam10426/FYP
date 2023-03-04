@@ -23,6 +23,7 @@ export class RoomService {
   }
 
  async addRoom(rooms:any){
+  // debugger
   this.user = this.authService.getCurrentUser();
   const roomDocRef = doc(this.fireStore,`rooms/${this.user.uid}`) 
   await setDoc(roomDocRef,rooms,{ merge:true })

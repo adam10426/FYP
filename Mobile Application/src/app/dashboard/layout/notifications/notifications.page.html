@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true">
+  <ion-card class="login-card">
+    <ion-card-title>
+      <ion-text class="text-success"><h1>Notifications</h1></ion-text>
+    </ion-card-title>
+  </ion-card>
+  <ion-card
+    class="device-detail-card"
+    *ngFor="let notification of notificationList"
+  >
+    <ion-card-header>
+      <ion-card-title class="title-flex">
+        <div class="title-text-flex">
+          <ion-text class="text-success">
+            <h3><strong>{{notification.title | uppercase}}</strong></h3>
+          </ion-text>
+
+          <ion-text class="notification-text mt-1">
+            {{notification.text}}
+          </ion-text>
+        </div>
+        <ion-text class="notification-date text-success align-self-center"
+          >{{notification.timestamp.toDate() | date:'hh:mm a' }}</ion-text
+        >
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>
